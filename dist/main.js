@@ -14002,12 +14002,47 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vk__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vk */ "./src/js/vk.js");
 /* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slider */ "./src/js/slider.js");
+/* harmony import */ var _popup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./popup */ "./src/js/popup.js");
+
 
 
 window.addEventListener('DOMContentLoaded', function () {
   Object(_vk__WEBPACK_IMPORTED_MODULE_0__["default"])();
   Object(_slider__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  Object(_popup__WEBPACK_IMPORTED_MODULE_2__["default"])();
 });
+
+/***/ }),
+
+/***/ "./src/js/popup.js":
+/*!*************************!*\
+  !*** ./src/js/popup.js ***!
+  \*************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var popup = function popup() {
+  var popup = document.getElementById('popup');
+  var btn = document.getElementById('btn');
+  var close = document.getElementById('popup__close');
+  var wrapper = popup.querySelector('.popup__body');
+
+  btn.onclick = function () {
+    popup.style.display = "block";
+  };
+
+  close.onclick = function () {
+    popup.style.display = "none";
+  };
+
+  wrapper.addEventListener('click', function () {
+    popup.style.display = "none";
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (popup);
 
 /***/ }),
 
