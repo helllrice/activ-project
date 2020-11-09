@@ -1,8 +1,9 @@
+import { event } from "jquery";
+
 const popup = () => {
     const popup = document.getElementById('popup');
     const btn = document.getElementById('btn');
     const close = document.getElementById('popup__close');
-    const wrapper = popup.querySelector('.popup__body')
 
     btn.onclick = function () {
         popup.style.display = "block";
@@ -12,8 +13,10 @@ const popup = () => {
         popup.style.display = "none";
     }
 
-    wrapper.addEventListener('click', () => {
+    window.addEventListener('click', (event) => {
+        if (event.target == popup) {
             popup.style.display = "none";
+        }
     });
 };
 

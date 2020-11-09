@@ -777,19 +777,12 @@ body {
   z-index: 10000
 }
 .popup__body {
-  min-height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  padding: 30px 10px
+  padding-top: 60px;
+  margin: 0 auto;
+  width: 470px
 }
 .popup__content {
+  display: block;
   background-color: #fff;
   color: #000;
   min-width: 440px;
@@ -814,6 +807,10 @@ body {
 }
 .popup__form {
   padding-top: 15px
+}
+.form-input._error {
+  -webkit-box-shadow: 0 0 15px red;
+  box-shadow: 0 0 15px red
 }
 .form-title {
   padding-top: 20px
