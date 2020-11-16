@@ -10,8 +10,6 @@
     z-index: 10000;
 }
 
-
-
 .popup__body {
     padding-top: 60px;
     margin: 0 auto;
@@ -49,9 +47,15 @@
     padding-top: 15px;
 }
 
-.form-input._error {
-    box-shadow: 0 0 15px red;
+.form__error-message {
+    visibility: hidden;
 }
+
+.form__error-message._active {
+    visibility: visible;
+}
+
+
 
 .form-title {
     padding-top: 20px;

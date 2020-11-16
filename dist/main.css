@@ -808,9 +808,11 @@ body {
 .popup__form {
   padding-top: 15px
 }
-.form-input._error {
-  -webkit-box-shadow: 0 0 15px red;
-  box-shadow: 0 0 15px red
+.form__error-message {
+  visibility: hidden
+}
+.form__error-message._active {
+  visibility: visible
 }
 .form-title {
   padding-top: 20px

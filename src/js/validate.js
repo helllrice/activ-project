@@ -1,56 +1,93 @@
-"use strict";
 
 const validate = () => {
-    document.addEventListener('DomContentLoaded', function() {
-        const form = document.getElementById('form');
-        form.addEventListener('submit', formSend);
+        const form = document.querySelector('.popup__form'),
+              name = document.querySelector('[name="name"]'),
+              phone = document.querySelector('[name="phone"]'),
+              com = document.querySelector('.input-comment');
 
-        async function formSend(e) {
+        const regExpPhone = /^([+]?[0-9\s-\(\)]{3,25})*$/i;
+
+        const setError = (elem, message) => {
+            elem.style.border = '1px solid red';
+            elem.nextElementSibling.textContent = message;
+            elem.nextElementSibling.classList.add('_active');
+        } 
+
+        const setSuccess = (elem) => {
+            elem.style.border = '1px solid green';
+            elem.nextElementSibling.classList.remove('_active');
+        }
+
+        const resetStyling = (elem) => {
+            elem.style.border = '';
+            elem.nextElementSibling.classList.remove('_active');
+        }
+
+        name.addEventListener('input', () => resetStyling(name));
+        phone.addEventListener('input', () => resetStyling(phone));
+        com.addEventListener('input', () => resetStyling(com));
+
+        name.addEventListener('blur', (e) => {
             e.preventDefault();
 
-            let error = formValidate(form);
-        }
+            const value = name.value;
 
-        
-        function formValidate(form) {
-            let error = 0;
-            let formReq = document.querySelectorAll('._req');
-
-
-            for (let index = 0; index < array.length; index++) {
-                const input = formReq[index];
-
-                if (input.classList.contains('_name')){
-                    if (nameTest(input)) {
-                        formAddError(input);
-                        error++
-                    }
-                }else if (input.getAttribute("type") === "checkbox" && input.checked === false) {
-                    formAddError(input);
-                    error++;
-                }else{
-                    if (input.value === '') {
-                        formAddError(input);
-                        error++;
-                    }
-                }
+            if(!value.trim().length){
+                setError(name, 'поле не должно быть пустым');
+                return;
             }
-        
-        function formAddError(input) {
-            input.parentElement.classList.add('_error');
-            input.classList.add('_error');
-        }
 
-        function formRemoveError(input) {
-            input.parentElement.classList.remove('_error');
-            input.classList.remove('_error');
-        }
+            if(value.trim().length < 5){
+                setError(name, 'слишком короткое имя');
+                return;
+            }
 
-        function nameTest(input) {
-            let match = /^[а-яё]*$/i.test(str);
-            return match;}
-        }
-    });
+            setSuccess(name);
+
+        });
+
+
+
+        phone.addEventListener('blur', (e) => {
+            e.preventDefault();
+
+            const value = phone.value;
+
+            if(!value.trim().length){
+                setError(phone, 'поле не должно быть пустым');
+                return;
+            }
+
+            if(!regExpPhone.test(value.trim())){
+                setError(phone, 'телефон не валиден');
+                return;
+            }
+
+            setSuccess(phone);
+
+        });
+
+        com.addEventListener('blur', (e) => {
+            e.preventDefault();
+
+            const value = com.value;
+
+            if(!value.trim().length){
+                setError(com, 'поле не должно быть пустым');
+                return;
+            }
+            
+            if(value.trim().length < 10){
+                setError(com, 'слишком короткое сообщение');
+                return;
+            }
+
+            setSuccess(com);
+
+        });
+
+            
+
 }
 
 export default validate;

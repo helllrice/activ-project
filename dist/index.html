@@ -388,15 +388,18 @@
             <div class="popup__content" id="popup__content">
                 <a href="#" class="popup__close" id="popup__close">x</a>
                 <div class="popup__title">Закажите обратный звонок</div>
-                <div class="popup__form" id="form">
+                <form class="popup__form" id="form">
                     <div class="form-title">Как вас Зовут?</div>
-                    <input type="text" placeholder="Имя, Фамилия" class="form-input _req _name">
+                    <input type="text" placeholder="Имя, Фамилия" class="form-input" name="name" id="name">
+                    <small class="form__error-message">error message</small>
                     <div class="form-title">Ваш номер телефона</div>
-                    <input type="text" placeholder="Например, +7 (996) 574-63-49" class="form-input _req">
+                    <input type="text" placeholder="Например, +7 (996) 574-63-49" class="form-input" name="phone">
+                    <small class="form__error-message">error message</small>
                     <div class="form-title">Комментарий</div>
-                    <textarea placeholder="Например, удобное время связи" class="input-comment _req"></textarea>
-                </div>
-                <button class="form-button">Отправить</button>
+                    <textarea placeholder="Например, удобное время связи" class="input-comment"></textarea>
+                    <small class="form__error-message">error message</small>
+                    <button class="form-button" id="form-button" type="submit">Отправить</button>
+                </form>
             </div>
         </div>
     </div>
