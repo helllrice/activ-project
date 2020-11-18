@@ -15333,6 +15333,21 @@ var validate = function validate() {
 
     setSuccess(com);
   });
+  var fields = form.querySelectorAll('.field');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    for (var i = 0; i < fields.length; i++) {
+      if (!fields[i].value == '') {
+        setSuccess(fields[i]);
+        return;
+      } else {
+        setError(com, 'поле не должно быть пустым');
+        setError(phone, 'поле не должно быть пустым');
+        setError(name, 'поле не должно быть пустым');
+      }
+    }
+  });
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (validate);

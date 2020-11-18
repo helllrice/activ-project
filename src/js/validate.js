@@ -4,7 +4,7 @@ const validate = () => {
               name = document.querySelector('[name="name"]'),
               phone = document.querySelector('[name="phone"]'),
               com = document.querySelector('.input-comment');
-
+              
         const regExpPhone = /^([+]?[0-9\s-\(\)]{3,25})*$/i;
 
         const setError = (elem, message) => {
@@ -27,7 +27,7 @@ const validate = () => {
         phone.addEventListener('input', () => resetStyling(phone));
         com.addEventListener('input', () => resetStyling(com));
 
-        name.addEventListener('blur', (e) => {
+        name.addEventListener('blur',  (e) => {
             e.preventDefault();
 
             const value = name.value;
@@ -84,7 +84,39 @@ const validate = () => {
 
             setSuccess(com);
 
+
+            
+
+
         });
+
+        const fields = form.querySelectorAll('.field');
+
+        
+
+        form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                for (let i = 0; i < fields.length; i++) {
+                    if(!fields[i].value == '') {
+                        setSuccess(fields[i]);
+                        return;
+                    } else {
+                        setError(com, 'поле не должно быть пустым');
+                        setError(phone, 'поле не должно быть пустым');
+                        setError(name, 'поле не должно быть пустым');
+                    }
+
+                    
+                    
+                    
+                }
+        })
+
+         
+
+
+        
 
             
 

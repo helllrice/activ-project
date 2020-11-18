@@ -577,6 +577,18 @@ body {
   -o-transition: .4s;
   transition: .4s
 }
+@media (max-width:575.98px) {
+  .partners-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap
+  }
+}
 .team {
   background-color: #f2f2f2;
   padding: 50px 0 50px 0
@@ -648,17 +660,17 @@ body {
 }
 @media (max-width:575.98px) {
   .team-item {
-    margin: 10px
+    margin: 15px
   }
 }
 @media (min-width:576px) and (max-width:767.98px) {
   .team-item {
-    margin: 15px
+    margin: 20px
   }
 }
 @media (min-width:768px) and (max-width:991.98px) {
   .team-item {
-    margin: 15px
+    margin: 20px
   }
 }
 .map {
