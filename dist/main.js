@@ -15276,17 +15276,7 @@ var validate = function validate() {
     elem.nextElementSibling.classList.remove('_active');
   };
 
-  name.addEventListener('input', function () {
-    return resetStyling(name);
-  });
-  phone.addEventListener('input', function () {
-    return resetStyling(phone);
-  });
-  com.addEventListener('input', function () {
-    return resetStyling(com);
-  });
-  name.addEventListener('blur', function (e) {
-    e.preventDefault();
+  var nameValidate = function nameValidate() {
     var value = name.value;
 
     if (!value.trim().length) {
@@ -15300,9 +15290,10 @@ var validate = function validate() {
     }
 
     setSuccess(name);
-  });
-  phone.addEventListener('blur', function (e) {
-    e.preventDefault();
+    return true;
+  };
+
+  var phoneValidate = function phoneValidate() {
     var value = phone.value;
 
     if (!value.trim().length) {
@@ -15316,9 +15307,10 @@ var validate = function validate() {
     }
 
     setSuccess(phone);
-  });
-  com.addEventListener('blur', function (e) {
-    e.preventDefault();
+    return true;
+  };
+
+  var comValidate = function comValidate() {
     var value = com.value;
 
     if (!value.trim().length) {
@@ -15332,20 +15324,46 @@ var validate = function validate() {
     }
 
     setSuccess(com);
+    return true;
+  };
+
+  var fieldsValidate = function fieldsValidate() {
+    var valide = true;
+
+    if (!nameValidate()) {
+      valide = false;
+    }
+
+    if (!phoneValidate()) {
+      valide = false;
+    }
+
+    if (!comValidate()) {
+      valide = false;
+    }
+
+    return valide;
+  };
+
+  name.addEventListener('input', function () {
+    return resetStyling(name);
   });
-  var fields = form.querySelectorAll('.field');
+  phone.addEventListener('input', function () {
+    return resetStyling(phone);
+  });
+  com.addEventListener('input', function () {
+    return resetStyling(com);
+  });
+  name.addEventListener('blur', nameValidate);
+  phone.addEventListener('blur', phoneValidate);
+  com.addEventListener('blur', comValidate);
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    for (var i = 0; i < fields.length; i++) {
-      if (!fields[i].value == '') {
-        setSuccess(fields[i]);
-        return;
-      } else {
-        setError(com, 'поле не должно быть пустым');
-        setError(phone, 'поле не должно быть пустым');
-        setError(name, 'поле не должно быть пустым');
-      }
+    if (fieldsValidate()) {
+      console.log('Валидация пройдена, отправка данных на сервер');
+    } else {
+      console.log('Валидация не пройдена');
     }
   });
 };

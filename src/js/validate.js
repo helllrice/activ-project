@@ -23,13 +23,8 @@ const validate = () => {
             elem.nextElementSibling.classList.remove('_active');
         }
 
-        name.addEventListener('input', () => resetStyling(name));
-        phone.addEventListener('input', () => resetStyling(phone));
-        com.addEventListener('input', () => resetStyling(com));
-
-        name.addEventListener('blur',  (e) => {
-            e.preventDefault();
-
+        const nameValidate = () => {
+                
             const value = name.value;
 
             if(!value.trim().length){
@@ -43,13 +38,10 @@ const validate = () => {
             }
 
             setSuccess(name);
+            return true;
+        }
 
-        });
-
-
-
-        phone.addEventListener('blur', (e) => {
-            e.preventDefault();
+        const phoneValidate = () => {
 
             const value = phone.value;
 
@@ -64,11 +56,10 @@ const validate = () => {
             }
 
             setSuccess(phone);
+            return true;
+        }
 
-        });
-
-        com.addEventListener('blur', (e) => {
-            e.preventDefault();
+        const comValidate = () => {
 
             const value = com.value;
 
@@ -83,33 +74,44 @@ const validate = () => {
             }
 
             setSuccess(com);
+            return true;
+        }
+
+        const fieldsValidate = () => {
+            let valide = true;
+            if(!nameValidate()) {
+                valide = false;
+            }
+            if(!phoneValidate()) {
+                valide = false;
+            }
+            if(!comValidate()) {
+                valide = false;
+            }
+
+            return valide;
+        }
 
 
-            
+        name.addEventListener('input', () => resetStyling(name));
+        phone.addEventListener('input', () => resetStyling(phone));
+        com.addEventListener('input', () => resetStyling(com));
 
+        name.addEventListener('blur', nameValidate);
+        phone.addEventListener('blur', phoneValidate);
+        com.addEventListener('blur', comValidate);
 
-        });
-
-        const fields = form.querySelectorAll('.field');
+        
 
         
 
         form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                
-                for (let i = 0; i < fields.length; i++) {
-                    if(!fields[i].value == '') {
-                        setSuccess(fields[i]);
-                        return;
-                    } else {
-                        setError(com, 'поле не должно быть пустым');
-                        setError(phone, 'поле не должно быть пустым');
-                        setError(name, 'поле не должно быть пустым');
-                    }
 
-                    
-                    
-                    
+                if(fieldsValidate()) {
+                    console.log('Валидация пройдена, отправка данных на сервер');
+                } else {
+                    console.log('Валидация не пройдена');
                 }
         })
 
