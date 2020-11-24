@@ -1,6 +1,6 @@
 
 const validate = () => {
-        const form = document.querySelector('.popup__form'),
+        const form = document.getElementById('form'),
               name = document.querySelector('[name="name"]'),
               phone = document.querySelector('[name="phone"]'),
               com = document.querySelector('.input-comment');
@@ -104,17 +104,28 @@ const validate = () => {
         
 
         
-
         form.addEventListener('submit', (e) => {
                 e.preventDefault();
+
+                const formData = new FormData(form);
+                fetch('server.php', {
+                    method: 'POST',
+                    body: formData
+                }).then(function (response) {
+                    return response.text();
+                }).then(function (text) {
+                    console.log(text);
+                }).catch(function (error) {
+                    console.error(error);
+                })
 
                 if(fieldsValidate()) {
                     console.log('Валидация пройдена, отправка данных на сервер');
                 } else {
-                    console.log('Валидация не пройдена');
+                    console.log('Валидация не пройдена!')
                 }
-        })
 
+        });
          
 
 
@@ -123,5 +134,7 @@ const validate = () => {
             
 
 }
+
+
 
 export default validate;
