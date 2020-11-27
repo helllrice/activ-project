@@ -100,26 +100,48 @@ const validate = () => {
         name.addEventListener('blur', nameValidate);
         phone.addEventListener('blur', phoneValidate);
         com.addEventListener('blur', comValidate);
+ 
+        const getMessage = {
+            loading: 'Загрузка...',
+            success: 'Валидация пройдена, отправка данных на почту!',
+            failure: 'Что-то пошло не так...'
+        };
 
-        
+        const postData = async (url, data) => {
+            document.querySelectorAll('.status').textContent = getMessage.loading;
+            let res = await fetch(url, {
+                method: 'POST',
+                body: data
+            });
+
+            return await res.text();
+        };
 
         
         form.addEventListener('submit', (e) => {
                 e.preventDefault();
 
-                const formData = new FormData(form);
-                fetch('server.php', {
-                    method: 'POST',
-                    body: formData
-                }).then(function (response) {
-                    return response.text();
-                }).then(function (text) {
-                    console.log(text);
-                }).catch(function (error) {
-                    console.error(error);
-                })
-
                 if(fieldsValidate()) {
+                
+                let statusMessage = document.createElement('div');
+                statusMessage.classList.add('status');
+                form.appendChild(statusMessage);
+
+                const formData = new FormData(form);
+
+                postData('server.php', formData)
+                    .then(res => {
+                        console.log(res);
+                        statusMessage.textContent = getMessage.success
+                    })
+                    .catch(() => statusMessage.textContent = getMessage.failure)
+                    .finally( () => {
+                        setTimeout(() => {
+                            statusMessage.remove();
+                        }, 3000);
+                    })
+
+
                     console.log('Валидация пройдена, отправка данных на сервер');
                 } else {
                     console.log('Валидация не пройдена!')
