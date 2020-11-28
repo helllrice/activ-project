@@ -3,7 +3,8 @@ const validate = () => {
         const form = document.getElementById('form'),
               name = document.querySelector('[name="name"]'),
               phone = document.querySelector('[name="phone"]'),
-              com = document.querySelector('.input-comment');
+              com = document.querySelector('.input-comment'),
+              inputs = document.querySelectorAll('[name]');
               
         const regExpPhone = /^([+]?[0-9\s-\(\)]{3,25})*$/i;
 
@@ -14,12 +15,11 @@ const validate = () => {
         } 
 
         const setSuccess = (elem) => {
-            elem.style.border = '1px solid green';
             elem.nextElementSibling.classList.remove('_active');
         }
 
         const resetStyling = (elem) => {
-            elem.style.border = '';
+            elem.style.border = '1px solid green';
             elem.nextElementSibling.classList.remove('_active');
         }
 
@@ -32,7 +32,7 @@ const validate = () => {
                 return;
             }
 
-            if(value.trim().length < 5){
+            if(value.trim().length < 3){
                 setError(name, 'слишком короткое имя');
                 return;
             }
@@ -68,7 +68,7 @@ const validate = () => {
                 return;
             }
             
-            if(value.trim().length < 10){
+            if(value.trim().length < 5){
                 setError(com, 'слишком короткое сообщение');
                 return;
             }
@@ -117,7 +117,21 @@ const validate = () => {
             return await res.text();
         };
 
+        const closePopup = () => {
+            popup.style.display = "none";
+            document.getElementsByTagName("body")[0].style.overflow="auto";
+        }
         
+
+       const clearInputs = () => {
+            inputs.forEach(item => {
+                item.value = '';
+                item.style.border = '';
+            })
+       }
+
+        
+
         form.addEventListener('submit', (e) => {
                 e.preventDefault();
 
@@ -137,11 +151,13 @@ const validate = () => {
                     .catch(() => statusMessage.textContent = getMessage.failure)
                     .finally( () => {
                         setTimeout(() => {
+                            closePopup();
                             statusMessage.remove();
+                            clearInputs();
                         }, 3000);
                     })
 
-
+                    
                     console.log('Валидация пройдена, отправка данных на сервер');
                 } else {
                     console.log('Валидация не пройдена!')
