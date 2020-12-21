@@ -4,7 +4,11 @@ const validate = () => {
               name = document.querySelector('[name="name"]'),
               phone = document.querySelector('[name="phone"]'),
               com = document.querySelector('.input-comment'),
-              inputs = document.querySelectorAll('[name]');
+              inputs = document.querySelectorAll('[name]'),
+              check = document.querySelectorAll('.form-check');
+
+
+
               
         const regExpPhone = /^([+]?[0-9\s-\(\)]{3,25})*$/i;
 
@@ -77,6 +81,9 @@ const validate = () => {
             return true;
         }
 
+
+        
+
         const fieldsValidate = () => {
             let valide = true;
             if(!nameValidate()) {
@@ -100,6 +107,7 @@ const validate = () => {
         name.addEventListener('blur', nameValidate);
         phone.addEventListener('blur', phoneValidate);
         com.addEventListener('blur', comValidate);
+        
  
         const getMessage = {
             loading: 'Загрузка...',
