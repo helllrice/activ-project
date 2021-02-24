@@ -1,0 +1,85 @@
+/* start section team */
+.team {
+    background-color: #F2F2F2;
+    padding: 100px 0 100px 0;
+
+}
+
+.team__container {}
+
+.team-title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 100;
+    text-transform: uppercase;
+    text-align: center;
+    color: #8f6666;
+    font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+}
+
+
+.team-box {
+    padding-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.team-item {
+    display: flex;
+    justify-content: space-around;
+    width: 200px;
+    height: 400px;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px 25px 10px;
+    box-shadow: 0px 1px 3px 1px rgba(224, 219, 219, 0.88);
+}
+
+.team-item:hover {
+    transition: 0.7s;
+    transform: scale(1.1);
+}
+
+.team-img {
+    width: 200px;
+    height: 250px;
+    object-fit: contain;
+}
+
+.team-item--title{
+    font-weight: bold;
+    font-size: 18px;
+    color: #8f6666;
+}
+
+.team-item--spec {
+    text-align: center;
+    color: #8F919D;
+}
+
+.team-item--number {
+    text-align: center;
+    color: #8F919D;
+    text-decoration: none;
+}
+
+/* stop section team */
+
+@media (max-width:575.98px) {
+    .team-item {
+        margin: 15px;
+    }
+}
+
+@media (min-width:576px) and (max-width:767.98px) {
+    .team-item {
+        margin: 20px;
+    }
+}
+
+@media (min-width:768px) and (max-width:991.98px) {
+    .team-item {
+        margin: 20px;
+    }
+}

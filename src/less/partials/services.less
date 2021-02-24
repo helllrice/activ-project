@@ -1,0 +1,93 @@
+/* start services styles */
+
+.services {
+    padding-top: 100px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url(https://ic.pics.livejournal.com/zdorovs/16627846/1194944/1194944_original.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 100px;
+}
+
+
+.services__container {}
+
+
+.services-title {
+    font-size: 30px;
+    font-weight: 100;
+    text-transform: uppercase;
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+    letter-spacing: 0.06em;
+}
+
+.services-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.services-item {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 500px;
+}
+
+.block-title {
+    color: #fff;
+    letter-spacing: 0.06em;
+}
+
+.services-block {
+    padding-top: 20px;
+    border-bottom: 1px solid #d9d9d9;
+    display: flex;
+}
+
+.block-text {
+    color: #ffffff;
+    padding-bottom: 15px;
+    line-height: 1.36em;
+}
+
+.block-item {
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+.block-title {
+    color: #ffffff;
+}
+
+
+/* stop services styles */
+
+@media (max-width:575.98px) {
+    .services-box {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (min-width:576px) and (max-width:767.98px) {
+    .services-box {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (min-width:768px) and (max-width:991.98px) {
+    .services-box {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .services-block {
+        padding-top: 20px;
+        border: none;
+        display: flex;
+    }
+}
